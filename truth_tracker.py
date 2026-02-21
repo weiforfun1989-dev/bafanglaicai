@@ -125,6 +125,64 @@ class TruthSocialTracker:
         conn.close()
         logger.info(f"数据库初始化完成: {self.db_path}")
     
+    def _process_retweet(self, content: str) -> str:
+        """
+        处理 RT 转发，获取被转发帖子的内容
+        只处理一层转发，转发的转发不处理
+        
+        Args:
+            content: 原始内容（可能包含 RT: 链接）
+            
+        Returns:
+            处理后的内容
+        """
+        import re
+        
+        # 检测 RT 转发模式
+        rt_pattern = r'RT:\s*(https://truthsocial\.com/users/[^/]+/statuses/(\d+))'
+        match = re.search(rt_pattern, content)
+        
+        if not match:
+            # 不是 RT 转发，直接返回
+            return content
+        
+        # 提取被转发帖子的 URL 和 ID
+        original_url = match.group(1)
+        original_status_id = match.group(2)
+        
+        # 检查是否已经是转发的转发（内容中已有 [转发] 标记）
+        if '[转发]' in content:
+            return content
+        
+        logger.info(f"检测到 RT 转发，尝试获取原帖: {original_url}")
+        
+        try:
+            # 尝试获取被转发帖子的内容
+            # 方法1: 尝试从 trumpstruth.org 获取
+            api_url = f"https://trumpstruth.org/api/v1/statuses/{original_status_id}"
+            response = self.session.get(api_url, timeout=10)
+            
+            if response.status_code == 200:
+                data = response.json()
+                original_content = data.get('content', '')
+                
+                if original_content:
+                    # 清理 HTML 标签
+                    clean_content = re.sub(r'<[^>]+>', '', original_content)
+                    # 组合转发内容
+                    return f"[转发] {clean_content}\n\n(原帖: {original_url})"
+            
+            # 方法2: 如果 API 失败，尝试直接访问页面
+            logger.warning(f"API 获取失败，尝试直接访问页面: {original_url}")
+            
+            # 返回带标记的原始内容
+            return f"[转发] (内容获取失败)\n\n原帖链接: {original_url}"
+            
+        except Exception as e:
+            logger.warning(f"获取转发原帖失败: {e}")
+            # 返回带标记的原始内容
+            return f"[转发] (内容获取失败: {str(e)[:50]})\n\n原帖链接: {original_url}"
+    
     def fetch_posts(self, username: str = TRUMP_USERNAME, limit: int = 40) -> List[TruthPost]:
         """
         从 Truth Social 获取帖子
@@ -168,6 +226,9 @@ class TruthSocialTracker:
                         
                         description = item.find('description')
                         content = description.text if description is not None else title
+                        
+                        # 处理 RT 转发 - 获取被转发帖子的内容
+                        content = self._process_retweet(content)
                         
                         post = TruthPost(
                             id=post_id,
