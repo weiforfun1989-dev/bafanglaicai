@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singapore Math - Fractions Practice (Primary 1-2)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Comic Sans MS", Arial, sans-serif;
+            background: #f0f8ff;
+            padding: 20px;
+        }
+        
+        .page {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1e88e5;
+            margin-bottom: 5px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .singapore-flag {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        
+        .method-box {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .method-title {
+            font-weight: bold;
+            color: #e65100;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .cpa-steps {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+        
+        .cpa-step {
+            text-align: center;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            width: 30%;
+        }
+        
+        .cpa-step .icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .section-title {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 8px 8px 0 0;
+            font-size: 17px;
+            font-weight: bold;
+        }
+        
+        .question {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .question-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: #FF5722;
+            color: white;
+            text-align: center;
+            line-height: 28px;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .bar-model {
+            margin: 15px 0;
+        }
+        
+        .bar-container {
+            display: flex;
+            height: 40px;
+            border: 2px solid #333;
+            margin: 10px 0;
+            position: relative;
+        }
+        
+        .bar-segment {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .bar-segment.shaded {
+            background: #FFEB3B;
+        }
+        
+        .bar-segment.unshaded {
+            background: white;
+        }
+        
+        .bar-label {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 13px;
+        }
+        
+        .unit-box {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #333;
+            margin: 2px;
+            text-align: center;
+            line-height: 36px;
+            font-weight: bold;
+        }
+        
+        .unit-box.shaded {
+            background: #FFEB3B;
+        }
+        
+        .answer-line {
+            border-bottom: 2px solid #333;
+            width: 80px;
+            display: inline-block;
+            margin: 0 5px;
+        }
+        
+        .work-space {
+            border: 1px dashed #ccc;
+            min-height: 60px;
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+        }
+        
+        .instruction {
+            background: #E8F5E9;
+            padding: 12px 15px;
+            border-left: 4px solid #4CAF50;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .fraction-display {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        .fraction-display .numerator {
+            border-bottom: 2px solid #333;
+            padding: 0 5px;
+            font-weight: bold;
+        }
+        
+        .fraction-display .denominator {
+            padding: 0 5px;
+            font-weight: bold;
+        }
+        
+        .comparison-box {
+            display: flex;
+            gap: 30px;
+            margin: 15px 0;
+            align-items: center;
+        }
+        
+        .comparison-item {
+            text-align: center;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dashed #ccc;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .page {
+                box-shadow: none;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="singapore-flag">🇸🇬</div>
+        <h1>Singapore Math</h1>
+        <p class="subtitle">Fractions Practice | Primary 1-2 (Grades 1-2)</p>
+        
+        <!-- CPA Method Explanation -->
+        <div class="method-box">
+            <div class="method-title">📐 CPA Approach (Concrete-Pictorial-Abstract)</div>
+            <div class="cpa-steps">
+                <div class="cpa-step">
+                    <div class="icon">🍕</div>
+                    <div><strong>Concrete</strong></div>
+                    <div style="font-size: 11px; color: #666;">Hands-on objects</div>
+                </div>
+                <div class="cpa-step">
+                    <div class="icon">📊</div>
+                    <div><strong>Pictorial</strong></div>
+                    <div style="font-size: 11px; color: #666;">Drawings/Models</div>
+                </div>
+                <div class="cpa-step">
+                    <div class="icon">🔢</div>
+                    <div><strong>Abstract</strong></div>
+                    <div style="font-size: 11px; color: #666;">Numbers/Symbols</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 1: Bar Model Method -->
+        <div class="section">
+            <div class="section-title">📊 Part 1: Bar Model Method</div>
+            
+            <div class="instruction">
+                <strong>Method:</strong> Use rectangles to represent the whole, divided into equal parts.
+            </div>
+            
+            <div class="question">
+                <span class="question-number">1</span>
+                <p>Tom ate half a pizza. Show with a bar model.</p>
+                
+                <div class="bar-model">
+                    <div class="bar-container" style="width: 200px;">
+                        <div class="bar-segment shaded" style="width: 50%;">1/2</div>
+                        <div class="bar-segment unshaded" style="width: 50%;">1/2</div>
+                    </div>
+                    <div class="bar-label">Whole Pizza = 1</div>
+                </div>
+                
+                <p>Tom ate <span class="answer-line" style="width: 60px;"></span> of the pizza.</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">2</span>
+                <p>A cake is cut into 4 pieces. Amy ate 3 pieces. Show with a bar model. What fraction did she eat?</p>
+                
+                <div class="work-space">
+                    <p style="color: #999; font-size: 12px;">Draw your bar model here:</p>
+                </div>
+                
+                <p>Amy ate <span class="answer-line" style="width: 60px;"></span> of the cake.</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">3</span>
+                <p>Compare 1/2 and 1/4. Which is bigger? Use bar models to explain.</p>
+                
+                <div class="comparison-box">
+                    <div class="comparison-item">
+                        <div class="bar-container" style="width: 150px;">
+                            <div class="bar-segment shaded" style="width: 50%;"></div>
+                            <div class="bar-segment unshaded" style="width: 50%;"></div>
+                        </div>
+                        <div>1/2</div>
+                    </div>
+                    
+                    <div style="font-size: 24px;">?</div>
+                    
+                    <div class="comparison-item">
+                        <div class="bar-container" style="width: 150px;">
+                            <div class="bar-segment shaded" style="width: 25%;"></div>
+                            <div class="bar-segment unshaded" style="width: 75%;"></div>
+                        </div>
+                        <div>1/4</div>
+                    </div>
+                </div>
+                
+                <p><span class="answer-line" style="width: 60px;"></span> is bigger.</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Unit Method -->
+        <div class="section">
+            <div class="section-title">🔲 Part 2: Unit Method</div>
+            
+            <div class="instruction">
+                <strong>Method:</strong> Use squares to represent units. Count squares to find fractions.
+            </div>
+            
+            <div class="question">
+                <span class="question-number">4</span>
+                <p>There are 6 apples. Tom took 2. What fraction did he take?</p>
+                
+                <div style="margin: 15px 0;">
+                    <div class="unit-box shaded">🍎</div>
+                    <div class="unit-box shaded">🍎</div>
+                    <div class="unit-box">🍎</div>
+                    <div class="unit-box">🍎</div>
+                    <div class="unit-box">🍎</div>
+                    <div class="unit-box">🍎</div>
+                </div>
+                
+                <p>Tom took <span class="answer-line" style="width: 60px;"></span> of the apples.</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">5</span>
+                <p>Draw 12 squares. Shade 1/3 of them.</p>
+                
+                <div class="work-space">
+                    <p style="color: #999; font-size: 12px;">Draw 12 squares here:</p>
+                </div>
+                
+                <p>Shade <span class="answer-line" style="width: 50px;"></span> squares.</p>
+            </div>
+        </div>
+        
+        <!-- Section 3: Problem Solving -->
+        <div class="section">
+            <div class="section-title">🧮 Part 3: Problem Solving</div>
+            
+            <div class="instruction">
+                <strong>Steps:</strong> 1) Understand → 2) Draw/Model → 3) Calculate → 4) Check
+            </div>
+            
+            <div class="question">
+                <span class="question-number">6</span>
+                <p><strong>Problem:</strong></p>
+                <p>Mom bought a watermelon. Tom ate 1/4, Dad ate 1/2. How much is left?</p>
+                
+                <div class="work-space">
+                    <p style="color: #999; font-size: 12px;">Working:</p>
+                    <p>1. Draw:</p>
+                    <p>2. Calculate:</p>
+                </div>
+                
+                <p><span class="answer-line" style="width: 60px;"></span> of the watermelon is left.</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">7</span>
+                <p><strong>Problem:</strong></p>
+                <p>A box has 20 chocolates. Day 1: ate 1/5. Day 2: ate 1/4 of remaining. How many left?</p>
+                
+                <div class="work-space">
+                    <p style="color: #999; font-size: 12px;">Working:</p>
+                </div>
+                
+                <p><span class="answer-line" style="width: 60px;"></span> chocolates left.</p>
+            </div>
+        </div>
+        
+        <!-- Answer Key -->
+        <div class="section" style="page-break-before: always;">
+            <div class="section-title">🔑 Answer Key</div>
+            
+            <div style="background: #E8F5E9; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                <p><strong>1.</strong> 1/2 (One Half)</p>
+                <p><strong>2.</strong> 3/4 (Three Quarters)</p>
+                <p><strong>3.</strong> 1/2 > 1/4, so 1/2 is bigger</p>
+                <p><strong>4.</strong> 2/6 = 1/3 (One Third)</p>
+                <p><strong>5.</strong> Shade 4 squares</p>
+                <p><strong>6.</strong> 1/4 (One Quarter)<br>
+                &nbsp;&nbsp;Calculation: 1 - 1/4 - 1/2 = 1/4</p>
+                <p><strong>7.</strong> 12 chocolates<br>
+                &nbsp;&nbsp;Day 1: 20 × 1/5 = 4, remaining 16<br>
+                &nbsp;&nbsp;Day 2: 16 × 1/4 = 4, remaining 12</p>
+            </div>
+            
+            <div style="background: #FFF3E0; padding: 15px; border-radius: 8px;">
+                <p><strong>📌 Singapore Math Key Points:</strong></p>
+                <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                    <li><strong>Bar Model:</strong> Use rectangles to show quantities and relationships</li>
+                    <li><strong>Unit Method:</strong> Find 1 unit first, then calculate total</li>
+                    <li><strong>Draw to Solve:</strong> Turn abstract problems into pictures</li>
+                    <li><strong>Step-by-Step:</strong> Break complex problems into small steps</li>
+                    <li><strong>Check Answer:</strong> Does the answer make sense?</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>🇸🇬 Singapore Math | CPA Approach | Suitable for Primary 1-2 (Grades 1-2)</p>
+            <p>Print and use | Answers on page 4</p>
+        </div>
+    </div>
+</body>
+</html>
